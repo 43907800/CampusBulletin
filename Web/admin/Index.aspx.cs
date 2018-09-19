@@ -17,18 +17,8 @@ namespace Web.admin
         protected void Page_Load(object sender, EventArgs e)
         {
             AdminInfo model = Session["admin"] as AdminInfo;
-            if (model==null)
-            {
-                string userName = Request["UserName"];
-                string pwd = Request["Password"];
-                model= bll.Login(userName,pwd);
-                if (model==null)
-                {
-                    Response.Write("<scrept>alert('账号或密码错误!')</scrept>");
-                    Response.Redirect("/Admin.html");
-                }
-            }
-            adminName = model.UserName;
+            if (model==null)Response.Redirect("/Admin.html");
+            else adminName = model.UserName;
         }
     }
 }

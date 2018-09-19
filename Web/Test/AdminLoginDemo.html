@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>后台管理系统</title>
+
+    <link href="lib/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+
+    <link href="css/main.css" rel="stylesheet" />
+    
+    <script src="js/jquery-1.11.1.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#btnLogin").click(function () {
+                var frmData = $("#form1").serialize();
+                $.ajax({
+                    url: "Ashx/adminLogin.ashx",
+                    type: "post",
+                    data: frmData,
+                    success: function (data) {
+                        if (data == "No") alert('账号或密码错误!');
+                        else window.location.href = "admin/Index.aspx";
+                    }
+                });
+            });
+        })
+
+    </script>
+</head>
+
+<body>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<div class="container">
+  <div class="form-container">
+     
+    <h1>后台管理系统</h1>
+    <form id="form1">
+      <div class="form-group">
+        <label>用户名:</label>
+        <input type="text" class="form-control" name="UserName" value="admin">
+      </div>
+      <div class="form-group">
+        <label>密  &nbsp; &nbsp; 码:</label>
+        <input type="password" class="form-control" name="Password" value="admin">
+      </div>
+     
+      <div class="form-group">
+        <button id="btnLogin" class="btn btn-primary btn-block">登录</button>
+         
+      </div>
+    </form>
+  </div>
+</div>
+<div class="footer">
+  
+</div>
+</body>
+
+</html>

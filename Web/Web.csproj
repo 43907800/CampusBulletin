@@ -67,13 +67,32 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.html" />
+    <Content Include="lib\jquery.validate.js" />
+    <Content Include="Test\AdminLoginDemo.html" />
     <Content Include="admin\Index.aspx" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\main.css" />
     <Content Include="img\logo.jpg" />
     <Content Include="img\logo.png" />
     <Content Include="js\jquery-1.11.1.js" />
+    <Content Include="lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" />
+    <Content Include="lib\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css" />
+    <Content Include="lib\bootstrap-3.3.7-dist\css\bootstrap.css" />
+    <Content Include="lib\bootstrap-3.3.7-dist\css\bootstrap.min.css" />
+    <Content Include="lib\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="lib\bootstrap-3.3.7-dist\js\bootstrap.js" />
+    <Content Include="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js" />
+    <Content Include="lib\bootstrap-3.3.7-dist\js\npm.js" />
     <Content Include="packages.config" />
+    <Content Include="lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css.map" />
+    <Content Include="lib\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="lib\bootstrap-3.3.7-dist\css\bootstrap.css.map" />
+    <Content Include="lib\bootstrap-3.3.7-dist\css\bootstrap.min.css.map" />
+    <Content Include="lib\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="lib\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="lib\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="lib\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Ashx\adminLogin.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -91,6 +110,9 @@
     </Compile>
     <Compile Include="admin\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\adminLogin.ashx.cs">
+      <DependentUpon>adminLogin.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

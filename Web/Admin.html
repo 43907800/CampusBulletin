@@ -1,55 +1,108 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-CN">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>后台管理系统</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <!--<script src="/js/jquery-1.11.1.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="lib/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="js/jquery-1.11.1.js"></script>
+    <script src="lib/jquery.validate.js"></script>
     <script type="text/javascript">
-        $(function(){
-            $("#btnLogin").click(function () {
-                var frmData = $("#form1").serialize();
-                $.ajax({
-                    url: "admin'/Index.aspx",
-                    type:"post",
-                    data: frmData,
-                });
+        $.validator.setDefaults({
+            submitHandler: function () {
+                 BindBtnClick();
+                //alert("asdasd");
+            }
+        });
+        $(function () {
+           // $("#btnLogin").click(BindBtnClick);
+            $("#form1").validate({
+                rules: {
+                    UserName: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 16,                        email: false
+                    }, Password: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 16
+                    }
+                },
+                messages: {
+                    UserName: {
+                        required: "必填项!",
+                        minlength: "不能低于2个字符!",
+                        maxlength:"不能超过16个字符!"
+                    }, Password: {
+                        required: "必填项!",
+                        minlength: "不能低于2个字符!",
+                        maxlength: "不能超过16个字符!"
+                    }
+                }
             });
         })
 
-    </script>-->
+        function BindBtnClick() {
+            var frmData = $("#form1").serialize();
+            $.ajax({
+                url: "Ashx/adminLogin.ashx",
+                type: "post",
+                data: frmData,
+                success: function (data) {
+                    if (data == "No") $(".help-block").text("登陆失败,账号或密码错误!!!");
+                    else window.location.href = "admin/Index.aspx";
+                }
+            });
+        }
+    </script>
+    <style type="text/css">
+        .error {
+            color: red;
+            margin-left: 8px;
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
-<div class="container">
-  <div class="form-container">
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    <h1>后台管理系统</h1>
-    <form id="form1" action="admin/Index.aspx" method="post">
-      <div class="form-group">
-        <label>用户名:</label>
-        <input type="text" class="form-control" name="UserName">
-      </div>
-      <div class="form-group">
-        <label>密  &nbsp; &nbsp; 码:</label>
-        <input type="password" class="form-control" name="Password">
-      </div>
-     
-      <div class="form-group">
-        <!--<button id="btnLogin" class="btn btn-primary btn-block">登录</button>-->
-          <input type="submit" class="btn btn-primary btn-block" value="登陆" />
-      </div>
-    </form>
-  </div>
-</div>
-<div class="footer">
-  
-</div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-5">
+
+                <form class="form-horizontal" id="form1">
+
+                    <h1>后台登陆系统</h1><br />
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">账号:</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="UserName" name="UserName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">密码:</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="Password">
+                            <p class="help-block" style="color:red"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input id="btnLogin" class="btn btn-primary btn-block" type="submit" value="登陆">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+        </div>
+
+
+
+    </div>
+
 </body>
-
 </html>
