@@ -2,19 +2,22 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>后台管理系统</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="lib/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
-    <script src="js/jquery-1.11.1.js"></script>
-    <script src="lib/jquery.validate.js"></script>
+    <link href="/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="/js/jquery-1.11.1.js"></script>
+    <script src="/lib/jquery.validate.js"></script>
     <script type="text/javascript">
         $.validator.setDefaults({
+            //校验通过执行方法
             submitHandler: function () {
                  BindBtnClick();
                 //alert("asdasd");
             }
-        });
+        });
+
+        //前端校验~
         $(function () {
            // $("#btnLogin").click(BindBtnClick);
             $("#form1").validate({
@@ -22,7 +25,9 @@
                     UserName: {
                         required: true,
                         minlength: 3,
-                        maxlength: 16,                        email: false
+                        maxlength: 16,
+                        email: false
+
                     }, Password: {
                         required: true,
                         minlength: 3,
@@ -43,6 +48,7 @@
             });
         })
 
+        //ajax异步请求
         function BindBtnClick() {
             var frmData = $("#form1").serialize();
             $.ajax({
@@ -50,8 +56,9 @@
                 type: "post",
                 data: frmData,
                 success: function (data) {
-                    if (data == "No") $(".help-block").text("登陆失败,账号或密码错误!!!");
-                    else window.location.href = "admin/Index.aspx";
+                    if (data == "Ok") window.location.href = "admin/Index.aspx";
+                    else if (data == "No") $(".help-block").text("登陆失败,账号或密码错误!!!");
+                    else $(".help-block").text("未知错误");
                 }
             });
         }
@@ -73,17 +80,17 @@
 
                 <form class="form-horizontal" id="form1">
 
-                    <h1>后台登陆系统</h1><br />
+                    <h1>&nbsp;&nbsp;&nbsp;后台系统登陆</h1><br />
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">账号:</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="UserName" name="UserName">
+                            <input type="username" class="form-control" id="inputEmail3" placeholder="UserName" name="UserName" value="admin">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">密码:</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="Password">
+                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="Password" value="admin">
                             <p class="help-block" style="color:red"></p>
                         </div>
                     </div>

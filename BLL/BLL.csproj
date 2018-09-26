@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AdminInfoBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SensitiveBll.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

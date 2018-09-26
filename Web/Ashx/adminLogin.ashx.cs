@@ -23,18 +23,21 @@ namespace Web.Ashx
             //    context.Response.Redirect("admin/Index.aspx");
             //}
             AdminInfo model = new AdminInfo();
-            string userName = context.Request["UserName"];
-            string pwd = context.Request["Password"];
-            if (userName.Length>16||pwd.Length>16)
+            string userName = context.Request["UserName"];//采集数据
+            string pwd = context.Request["Password"];//采集数据
+            if (userName.Length > 16 || pwd.Length > 16)//校验数据
                 context.Response.Write("No");
             AdminInfoBll bll = new AdminInfoBll();
-            model = bll.Login(userName, pwd);
+
+            model = bll.Login(userName, pwd);//调用Bll层登陆方法
             if (model == null) context.Response.Write("No");
             else
             {
                 context.Session["admin"] = model;
                 context.Response.Write("Ok");
             }
+
+
         }
 
         public bool IsReusable

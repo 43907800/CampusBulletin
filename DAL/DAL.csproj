@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AdminInfoDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SensitiveDal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
