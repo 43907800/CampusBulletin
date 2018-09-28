@@ -21,11 +21,18 @@ namespace Common
             StringBuilder sb = new StringBuilder();
             int up = pageIndex - 1 < 1 ? 1 : pageIndex - 1;
             int down = pageIndex + 1 > pageCount ? pageCount : pageIndex + 1;
+            if (pageCount<2) return string.Empty;
             sb.Append("<nav aria-label='Page navigation'>");
             sb.Append("<ul class='pagination'>");
             sb.AppendFormat(" <li><a href='/Ashx/SensitivePageList.ashx?pageIndex={0}' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span></a></li>", up);
-            sb.Append("");
-            for (int i = 1; i <= pageCount; i++)
+            int start = (pageIndex - 2) < 1 ? 1 : pageIndex - 2;
+            int end = start + 5;
+            if (end>pageCount)
+            {
+                start = pageCount - 5;
+                end = pageCount;
+            }
+            for (int i = start; i < end; i++)
             {
                 if (i == pageIndex)
                     sb.AppendFormat("<li class='active'><a href='/Ashx/SensitivePageList.ashx?pageIndex={0}'>{0}</a></li>", i);

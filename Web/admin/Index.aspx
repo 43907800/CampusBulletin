@@ -50,8 +50,8 @@
                     <li role="presentation" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">系统设置 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">导航栏</a></li>
-                            <li><a href="#">敏感词</a></li>
+                            <li><a href="/admin/NavManage/NavList.html" target="content">导航栏</a></li>
+                            <li><a href="/admin/SensitiveManage/SensitiveList.html" target="content">敏感词</a></li>
                             <li><a href="#">配置信息</a></li>
                         </ul>
                     </li>
@@ -59,7 +59,7 @@
             </div>
             <!----------------------导航栏结束-------------------------------->
             <div class="col-sm-10">
-               <iframe name="content" frameborder="0"   src="/admin/Sensitive/SensitiveList.html" height="800px" width="100%" ></iframe>
+               <iframe name="content" frameborder="0" scrolling="no" height="800px" width="100%" ></iframe>
         
 
             </div>

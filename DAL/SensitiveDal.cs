@@ -28,6 +28,17 @@ namespace DAL
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, pms);
         }
 
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int Delete(int id)
+        {
+            string sql = "delete [dbo].[T_Sensitive] where  id=@id ";
+            SqlParameter pm = new SqlParameter("@id", SqlDbType.Int) { Value=id};
+            return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, pm);
+        }
 
         /// <summary>
         /// 是否存在

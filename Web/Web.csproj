@@ -67,7 +67,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.html" />
-    <Content Include="admin\Sensitive\SensitiveList.html" />
+    <Content Include="admin\NavManage\NavList.html" />
+    <Content Include="admin\SensitiveManage\SensitiveList.html" />
+    <Content Include="css\table.css" />
     <Content Include="js\jquery-2.1.1.js" />
     <Content Include="lib\jquery.validate.js" />
     <Content Include="Test\AdminIndexDemo.html" />
@@ -98,6 +100,8 @@
     <Content Include="Ashx\adminLogin.ashx" />
     <Content Include="Ashx\SensitivePageList.ashx" />
     <Content Include="Ashx\SensitiveAdd.ashx" />
+    <Content Include="Ashx\NavList.ashx" />
+    <Content Include="Ashx\NavAdd.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -118,6 +122,12 @@
     </Compile>
     <Compile Include="Ashx\adminLogin.ashx.cs">
       <DependentUpon>adminLogin.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\NavAdd.ashx.cs">
+      <DependentUpon>NavAdd.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\NavList.ashx.cs">
+      <DependentUpon>NavList.ashx</DependentUpon>
     </Compile>
     <Compile Include="Ashx\SensitiveAdd.ashx.cs">
       <DependentUpon>SensitiveAdd.ashx</DependentUpon>
