@@ -67,8 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.html" />
-    <Content Include="admin\NavManage\NavList.html" />
-    <Content Include="admin\SensitiveManage\SensitiveList.html" />
+    <Content Include="admin\NavList.html" />
+    <Content Include="admin\SensitiveList.html" />
     <Content Include="css\table.css" />
     <Content Include="js\jquery-2.1.1.js" />
     <Content Include="lib\jquery.validate.js" />
@@ -98,10 +98,13 @@
     <Content Include="lib\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="lib\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Ashx\adminLogin.ashx" />
-    <Content Include="Ashx\SensitivePageList.ashx" />
-    <Content Include="Ashx\SensitiveAdd.ashx" />
-    <Content Include="Ashx\NavList.ashx" />
-    <Content Include="Ashx\NavAdd.ashx" />
+    <Content Include="Ashx\SensitiveManege\SensitivePageList.ashx" />
+    <Content Include="Ashx\SensitiveManege\SensitiveAdd.ashx" />
+    <Content Include="Ashx\NavManage\NavList.ashx" />
+    <Content Include="Ashx\NavManage\NavAdd.ashx" />
+    <Content Include="Ashx\SensitiveManege\SensitiveDel.ashx" />
+    <Content Include="Ashx\NavManage\NavDel.ashx" />
+    <Content Include="Ashx\NavManage\NavEdit.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -110,6 +113,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Test\ModalTest.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -123,16 +127,25 @@
     <Compile Include="Ashx\adminLogin.ashx.cs">
       <DependentUpon>adminLogin.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Ashx\NavAdd.ashx.cs">
+    <Compile Include="Ashx\NavManage\NavAdd.ashx.cs">
       <DependentUpon>NavAdd.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Ashx\NavList.ashx.cs">
+    <Compile Include="Ashx\NavManage\NavDel.ashx.cs">
+      <DependentUpon>NavDel.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\NavManage\NavEdit.ashx.cs">
+      <DependentUpon>NavEdit.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\NavManage\NavList.ashx.cs">
       <DependentUpon>NavList.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Ashx\SensitiveAdd.ashx.cs">
+    <Compile Include="Ashx\SensitiveManege\SensitiveAdd.ashx.cs">
       <DependentUpon>SensitiveAdd.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Ashx\SensitivePageList.ashx.cs">
+    <Compile Include="Ashx\SensitiveManege\SensitiveDel.ashx.cs">
+      <DependentUpon>SensitiveDel.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\SensitiveManege\SensitivePageList.ashx.cs">
       <DependentUpon>SensitivePageList.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

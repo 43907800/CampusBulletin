@@ -41,6 +41,17 @@ namespace BLL
             return dal.Delete(id);
         }
 
+
+        /// <summary>
+        /// 根据Id获取一个实体
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Setting GetModelById(int id)
+        {
+            return dal.GetModelById(id);
+        }
+
         /// <summary>
         /// 获取指定范围数据
         /// </summary>

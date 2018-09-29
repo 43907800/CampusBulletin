@@ -26,6 +26,16 @@ namespace BLL
         }
 
         /// <summary>
+        /// 根据Id删除一条数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool Remove(int id)
+        {
+            return dal.Delete(id)>0;
+        }
+
+        /// <summary>
         /// 批量添加
         /// </summary>
         /// <param name="list"></param>

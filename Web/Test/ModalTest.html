@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/table.css" rel="stylesheet" />
+    <script src="/js/jquery-1.11.1.js"></script>
+    <script src="/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#myModal').on('show.bs.modal', function (e) {
+                alert('aa');
+            })
+            $('#btn').click(function () {
+                $('#EditModal').modal('show');
+
+            });
+        })
+    </script>
+</head>
+<body>
+    <button type="button" data-toggle="modal" data-target="#myModal">Launch modal</button>
+    <button id="btn">aaa</button>
+    <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="false" id="EditModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">编辑</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="frmEdit">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">编号</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Oder" id="Oder" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">文本</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Text" id="Text" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">地址</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Address" id="Address" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">备注</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Remark" id="Remark">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">更新</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</body>
+</html>

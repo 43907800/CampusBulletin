@@ -24,7 +24,7 @@ namespace DAL
             SqlParameter[] pms = {
                 new SqlParameter("@name", SqlDbType.NVarChar, 32) { Value=setting.Name},
                 new SqlParameter("@value", SqlDbType.NVarChar, 128) { Value = setting.Value },
-                new SqlParameter("@Remark", SqlDbType.NVarChar, 32) { Value = setting.Remark } };
+                new SqlParameter("@Remark", SqlDbType.NVarChar, 32) { Value = setting.Remark==null?DBNull.Value:(object)setting.Remark} };
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, pms);
         }
 
@@ -35,11 +35,11 @@ namespace DAL
         /// <returns></returns>
         public int Update(Setting setting)
         {
-            string sql = "update [dbo].[T_Setting] set  Name=@Name, value=@value, Remark=@Remal where Id=@Id";
+            string sql = "update [dbo].[T_Setting] set  Name=@Name, value=@value, Remark=@Remark where Id=@Id";
             SqlParameter[] pms = {
                 new SqlParameter("@name", SqlDbType.NVarChar, 32) { Value=setting.Name},
                 new SqlParameter("@value", SqlDbType.NVarChar, 128) { Value = setting.Value },
-                new SqlParameter("@Remark", SqlDbType.NVarChar, 32) { Value = setting.Remark },
+                new SqlParameter("@Remark", SqlDbType.NVarChar, 32) {Value = setting.Remark==null?DBNull.Value:(object)setting.Remark},
             new SqlParameter("@id", SqlDbType.Int) { Value = setting.Id }};
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, pms);
         }
@@ -52,7 +52,7 @@ namespace DAL
         public int Delete(int id)
         {
             string sql = "delete [dbo].[T_Setting] where Id=@id";
-            SqlParameter pm = new SqlParameter("@id", SqlDbType.Int) { Value=id};
+            SqlParameter pm = new SqlParameter("@id", SqlDbType.Int) { Value = id };
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, pm);
         }
 
@@ -80,9 +80,23 @@ namespace DAL
         public int GetNavCount()
         {
             string sql = "select count(1) from [dbo].[T_Setting] where [Name]='NavInfo'";
-            return Convert.ToInt32( SqlHelper.ExecuteScalar(sql, CommandType.Text));
+            return Convert.ToInt32(SqlHelper.ExecuteScalar(sql, CommandType.Text));
         }
 
+
+        /// <summary>
+        /// 根据Id获取一个实体
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Setting GetModelById(int id)
+        {
+            string sql = "select * from [dbo].[T_Setting] where Id=@id";
+            SqlParameter pm = new SqlParameter("@id", SqlDbType.Int) { Value = id };
+            List<Setting> list = Table2List(SqlHelper.ExecuteDataTable(sql, CommandType.Text, pm));
+            if (list.Count > 0) return list[0];
+            else return null;
+        }
 
         /// <summary>
         /// table 转 list 集合

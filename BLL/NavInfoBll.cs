@@ -26,9 +26,9 @@ namespace BLL
         /// </summary>
         /// <param name="nav"></param>
         /// <returns></returns>
-        public int Update(NavInfo nav)
+        public bool Update(NavInfo nav)
         {
-            return settingBll.Update(nav.ToSetting());
+            return settingBll.Update(nav.ToSetting())>0;
         }
 
         /// <summary>
@@ -36,9 +36,9 @@ namespace BLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int Delete(int id)
+        public bool Remove(int id)
         {
-            return settingBll.Delete(id);
+            return settingBll.Delete(id)>0;
         }
 
         /// <summary>
@@ -68,6 +68,19 @@ namespace BLL
         }
 
 
+
+
+
+
+        /// <summary>
+        /// 根据Id获取一个实体
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public NavInfo GetModelById(int id)
+        {
+           return settingBll.GetModelById(id).ToNavInfo();
+        }
 
         /// <summary>
         /// 交换位置
