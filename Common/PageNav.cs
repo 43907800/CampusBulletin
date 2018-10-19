@@ -32,7 +32,8 @@ namespace Common
                 start = pageCount - 5;
                 end = pageCount;
             }
-            for (int i = start; i < end; i++)
+            start = start < 1 ? 1 : start;
+            for (int i = start; i <=end; i++)
             {
                 if (i == pageIndex)
                     sb.AppendFormat("<li class='active'><a href='/Ashx/SensitivePageList.ashx?pageIndex={0}'>{0}</a></li>", i);

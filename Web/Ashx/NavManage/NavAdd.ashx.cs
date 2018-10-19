@@ -23,7 +23,7 @@ namespace Web.Ashx
             nav.Remark= context.Request["Remark"];
 
             NavInfoBll navBll = new NavInfoBll();
-            if (navBll.Add(nav)>0) context.Response.Write("Ok");
+            if (navBll.Add(nav)) context.Response.Write("Ok");
             else context.Response.Write("No");
         }
 

@@ -16,7 +16,7 @@ namespace BLL
         /// </summary>
         /// <param name="nav"></param>
         /// <returns></returns>
-        public int Add(NavInfo nav)
+        public bool Add(NavInfo nav)
         {
             return settingBll.Add(nav.ToSetting());
         }

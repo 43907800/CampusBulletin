@@ -8,27 +8,27 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class SettingBll
+    public class BulletinTypeBll
     {
-        SettingDal dal = new SettingDal();
-
+        BulletinTypeDal dal = new BulletinTypeDal();
         /// <summary>
         /// 添加一条数据
         /// </summary>
-        /// <param name="s"></param>
+        /// <param name="t"></param>
         /// <returns></returns>
-        public bool Add(Setting s)
+        public bool Add(BulletinType t)
         {
-            return dal.Insert(s)>0;
+            return dal.Insert(t)>0;
         }
+
         /// <summary>
         /// 更新一条数据
         /// </summary>
-        /// <param name="setting"></param>
+        /// <param name="t"></param>
         /// <returns></returns>
-        public int Update(Setting setting)
+        public bool Update(BulletinType t)
         {
-            return dal.Update(setting);
+            return dal.Update(t)>0;
         }
 
         /// <summary>
@@ -36,18 +36,17 @@ namespace BLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int Delete(int id)
+        public bool Delete(int id)
         {
-            return dal.Delete(id);
+            return dal.Delete(id)>0;
         }
-
 
         /// <summary>
         /// 根据Id获取一个实体
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Setting GetModelById(int id)
+        public BulletinType GetModelById(int id)
         {
             return dal.GetModelById(id);
         }
@@ -58,20 +57,20 @@ namespace BLL
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public List<Setting> GetNavPageList(int pageIndex, int pageSize)
+        public List<BulletinType> GetPageList(int pageIndex, int pageSize)
         {
             int start = (pageIndex - 1) * pageSize + 1;
             int end = pageIndex * pageSize;
             return dal.GetNavPageList(start, end);
         }
+
         /// <summary>
-        /// 获取导航信息总条数
+        /// 获取总条数
         /// </summary>
         /// <returns></returns>
-        public int GetNavCount()
+        public int GetCount()
         {
-            return dal.GetNavCount();
+            return dal.GetCount();
         }
     }
-
 }

@@ -67,9 +67,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.html" />
+    <Content Include="admin\UserList.html" />
     <Content Include="admin\NavList.html" />
     <Content Include="admin\SensitiveList.html" />
     <Content Include="css\table.css" />
+    <Content Include="img\HeadPic\Default.png" />
     <Content Include="js\jquery-2.1.1.js" />
     <Content Include="lib\jquery.validate.js" />
     <Content Include="Test\AdminIndexDemo.html" />
@@ -77,8 +79,6 @@
     <Content Include="admin\Index.aspx" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\main.css" />
-    <Content Include="img\logo.jpg" />
-    <Content Include="img\logo.png" />
     <Content Include="js\jquery-1.11.1.js" />
     <Content Include="lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" />
     <Content Include="lib\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css" />
@@ -105,6 +105,15 @@
     <Content Include="Ashx\SensitiveManege\SensitiveDel.ashx" />
     <Content Include="Ashx\NavManage\NavDel.ashx" />
     <Content Include="Ashx\NavManage\NavEdit.ashx" />
+    <Content Include="Ashx\BulletinTypeManage\BulletinTypeAdd.ashx" />
+    <Content Include="Ashx\BulletinTypeManage\TypePageList.ashx" />
+    <Content Include="Ashx\BulletinTypeManage\TypeDel.ashx" />
+    <Content Include="Ashx\BulletinTypeManage\TypeEdit.ashx" />
+    <Content Include="Ashx\UserManage\UserPageList.ashx" />
+    <Content Include="Ashx\RegionManage\FindRegion.ashx" />
+    <Content Include="Ashx\UserManage\UserAdd.ashx" />
+    <Content Include="Ashx\UserManage\UserDel.ashx" />
+    <Content Include="Ashx\UserManage\UserEdit.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -113,6 +122,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\BulletinType.html" />
     <Content Include="Test\ModalTest.html" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -127,6 +137,18 @@
     <Compile Include="Ashx\adminLogin.ashx.cs">
       <DependentUpon>adminLogin.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Ashx\BulletinTypeManage\BulletinTypeAdd.ashx.cs">
+      <DependentUpon>BulletinTypeAdd.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\BulletinTypeManage\TypeDel.ashx.cs">
+      <DependentUpon>TypeDel.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\BulletinTypeManage\TypeEdit.ashx.cs">
+      <DependentUpon>TypeEdit.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\BulletinTypeManage\TypePageList.ashx.cs">
+      <DependentUpon>TypePageList.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Ashx\NavManage\NavAdd.ashx.cs">
       <DependentUpon>NavAdd.ashx</DependentUpon>
     </Compile>
@@ -139,6 +161,9 @@
     <Compile Include="Ashx\NavManage\NavList.ashx.cs">
       <DependentUpon>NavList.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Ashx\RegionManage\FindRegion.ashx.cs">
+      <DependentUpon>FindRegion.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Ashx\SensitiveManege\SensitiveAdd.ashx.cs">
       <DependentUpon>SensitiveAdd.ashx</DependentUpon>
     </Compile>
@@ -147,6 +172,18 @@
     </Compile>
     <Compile Include="Ashx\SensitiveManege\SensitivePageList.ashx.cs">
       <DependentUpon>SensitivePageList.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\UserManage\UserAdd.ashx.cs">
+      <DependentUpon>UserAdd.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\UserManage\UserDel.ashx.cs">
+      <DependentUpon>UserDel.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\UserManage\UserEdit.ashx.cs">
+      <DependentUpon>UserEdit.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\UserManage\UserPageList.ashx.cs">
+      <DependentUpon>UserPageList.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

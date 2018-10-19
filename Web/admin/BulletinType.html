@@ -34,10 +34,10 @@
 
         //给添加数据按钮绑定click 事件
         function BindAddBtnClick() {
-            $("#AddNav").click(function () {
+            $("#Add").click(function () {
                 var frmData = $("#frm1").serialize();
                 $.ajax({
-                    url: "/Ashx/NavManage/NavAdd.ashx",
+                    url: "/Ashx/BulletinTypeManage/BulletinTypeAdd.ashx",
                     type: "post",
                     data: frmData,
                     success: function (data) {
@@ -54,15 +54,13 @@
         }
         //获取数据显示到table中
         function InitTable(postData) {
-            $.getJSON("/Ashx/NavManage/NavList.ashx", postData, function (data) {
+            $.getJSON("/Ashx/BulletinTypeManage/TypePageList.ashx", postData, function (data) {
                 $("#tbBody").html("");
                 for (var i in data.List) {
                     var strTr = "<tr>";
-                    strTr += "<td>" + data.List[i].Oder + "</td>";
-                    strTr += "<td>" + data.List[i].Text + "</td>";
-                    strTr += "<td>" + data.List[i].Address + "</td>";
-                    strTr += "<td>" + data.List[i].Remark + "</td>";
-                    strTr += "<td> <a href='/Ashx/NavManage/NavEdit.ashx?Id=" + data.List[i].Id + "' class='btn btn-default' >编辑</a> <a href='/Ashx/NavManage/NavDel.ashx?Id=" + data.List[i].Id + "' class='btn btn-default' >删除</a></td>";
+                    strTr += "<td>" + data.List[i].Id + "</td>";
+                    strTr += "<td>" + data.List[i].TypeName + "</td>";
+                    strTr += "<td> <a href='/Ashx/BulletinTypeManage/TypeEdit.ashx?Id=" + data.List[i].Id + "' class='btn btn-default' >编辑</a> <a href='/Ashx/BulletinTypeManage/TypeDel.ashx?Id=" + data.List[i].Id + "' class='btn btn-default' >删除</a></td>";
                     strTr += "</tr>";
                     $("#tbBody").append(strTr);
                 }
@@ -84,10 +82,8 @@
                     dataType: "json",
                     success: function (data) {
                         $("#EditId").val(data.Id);
-                        $("#EditOder").val(data.Oder);
-                        $("#EditText").val(data.Text);
-                        $("#EditAddress").val(data.Address);
-                        $("#EditRemark").val(data.Remark);
+                        $("#EditIdx").val(data.Id);
+                        $("#EditText").val(data.TypeName);
                         //alert(data.Text);
                     }
                 });
@@ -105,7 +101,7 @@
                 //alert('aaa');
                 var editFrm = $("#frmEdit").serialize();
                 $.ajax({
-                    url: "/Ashx/NavManage/NavEdit.ashx",
+                    url: "/Ashx/BulletinTypeManage/TypeEdit.ashx",
                     type: "post",
                     data: editFrm,
                     success: function (data) {
@@ -178,14 +174,14 @@
 <body>
     <!------------------列表展示---------------->
     <div class="btn-group" role="group" aria-label="">
-        <button id="btnList" type="button" class="btn btn-default btn-lg active">导航信息列表</button>
-        <button id="btnAdd" type="button" class="btn btn-default btn-lg">导航信息添加</button>
+        <button id="btnList" type="button" class="btn btn-default btn-lg active">公告类别列表</button>
+        <button id="btnAdd" type="button" class="btn btn-default btn-lg">公告类别添加</button>
     </div>
 
     <div id="divlist" class="isDisplay">
         <table id="tb1" class="table table-striped table-condensed">
             <thead>
-                <tr><th>编号</th><th>内容</th><th>地址</th><th>备注</th><th>操作</th></tr>
+                <tr><th>编号</th><th>名称</th><th>操作</th></tr>
             </thead>
             <tbody id="tbBody"></tbody>
 
@@ -193,44 +189,27 @@
         <div id="NavDiv"></div>
     </div>
     <!------------------列表展示结束---------------->
+
     <!------------------信息添加---------------->
     <div id="divadd" class="isDisplay">
         <form class="form-horizontal" id="frm1">
             <div class="form-group">
-                <label class="col-sm-1 control-label">编号</label>
+                <label class="col-sm-2 control-label">类别名称</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" name="Oder" id="Oder" required>
+                    <input type="text" class="form-control" name="TypeName" id="TypeName" required>
                 </div>
             </div>
+            
             <div class="form-group">
-                <label class="col-sm-1 control-label">文本</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" name="Text" id="Text" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-1 control-label">地址</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" name="Address" id="Address" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-1 control-label">备注</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" name="Remark" id="Remark">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-sm-offset-1 col-sm-10">
-                    <input type="submit" style="width:100px" class="btn btn-default" value="添加" id="AddNav" />
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit" style="width:100px" class="btn btn-default" value="添加" id="Add" />
                 </div>
             </div>
         </form>
 
     </div>
     <!------------------信息添加结束---------------->
+
     <!------------------信息编辑------------------------------->
 
     <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="false" id="EditModal">
@@ -238,7 +217,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">导航信息编辑</h4>
+                    <h4 class="modal-title">公告类别编辑</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" id="frmEdit">
@@ -247,28 +226,17 @@
                             <label class="col-sm-3 control-label">编号</label>
                             <div class="col-sm-7">
                                 <input type="hidden" name="EditId" id="EditId" />
-                                <input type="text" class="form-control" name="EditOder" id="EditOder" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">文本</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" name="EditText" id="EditText" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">地址</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" name="EditAddress" id="EditAddress" required>
+                                <input type="text" class="form-control" name="EditOder" id="EditIdx" required disabled>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">备注</label>
+                            <label class="col-sm-3 control-label">名称</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="EditRemark" id="EditRemark">
+                                <input type="text" class="form-control" name="EditText" id="EditText" required>
                             </div>
                         </div>
+                     
 
                         <div class="form-group">
                             <div class="col-sm-offset-4 col-sm-6">

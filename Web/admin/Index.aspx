@@ -33,10 +33,11 @@
             <div class="col-sm-2">
                 <ul class="nav nav-pills nav-stacked">
                     <li role="presentation" class="active"><a href="#">首页设置</a></li>
+                    <li role="presentation"><a href="#">用户管理</a></li>
                     <li role="presentation" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户管理 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">用户列表</a></li>
+                            <li><a href="/admin/UserList.html" target="content">用户列表</a></li>
                             <li><a href="#">添加用户</a></li>
                         </ul>
                     </li>
@@ -44,7 +45,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公告管理 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">公告列表</a></li>
-                            <li><a href="#">添加公告</a></li>
+                            <li><a href="/admin/BulletinType.html" target="content">公告类别</a></li>
                         </ul>
                     </li>
                     <li role="presentation" class="dropdown">
@@ -57,13 +58,14 @@
                     </li>
                 </ul>
             </div>
+        </div>
+
             <!----------------------导航栏结束-------------------------------->
             <div class="col-sm-10">
                <iframe name="content" frameborder="0" scrolling="no" height="800px" width="100%" ></iframe>
         
 
             </div>
-        </div>
     </div>
 
 </body>
