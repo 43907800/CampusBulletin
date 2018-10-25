@@ -46,6 +46,7 @@ namespace Web.Ashx.UserManage
                 user.Name = context.Request["EditName"];
                 user.Sex = context.Request["EditSex"] == "男";
                 user.Region = context.Request["EditRegion"];
+                user.isDisable= context.Request["EditisDisable"] == "on";
                 if (bll.Update(user))
                 {
                     context.Response.Write("Ok");

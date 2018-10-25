@@ -1,9 +1,11 @@
-﻿using DAL;
+﻿using Common;
+using DAL;
 using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BLL
@@ -25,6 +27,46 @@ namespace BLL
             return count;
         }
 
+        /// <summary>
+        /// 检查 禁用词
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public bool CheckBanned(string str)
+        {
+            object obj = CacheHelper.Get("banned");
+            List<string> list = null;
+            if (obj==null)
+            {
+                list = dal.GetAllBanned();
+                CacheHelper.Set("banned", list);
+            }
+            else
+            {
+                list= obj as List<string>;
+            }
+            string regex = string.Join("|", list.ToArray());
+            return Regex.IsMatch(str,regex);
+        }
+
+        
+        public bool CheckMod(string str)
+        {
+            object obj = CacheHelper.Get("mod");
+            List<string> list = null;
+            if (obj == null)
+            {
+                list = dal.GetAllMod();
+                CacheHelper.Set("mod", list);
+            }
+            else
+            {
+                list = obj as List<string>;
+            }
+            string regex = string.Join("|", list.ToArray());
+            regex = regex.Replace(@"\", @"\\").Replace("{2}", ".{0,2}");
+            return Regex.IsMatch(str, regex);
+        }
         /// <summary>
         /// 根据Id删除一条数据
         /// </summary>

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/js/jquery-1.11.1.js"></script>
+    <script src="/js/wangEditor.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        loadEditor();
+        
+
+    })
+
+        //加载富文本编辑器
+    function loadEditor() {
+        var E = window.wangEditor
+        var editor = new E('#Editor');
+        //设置图片上传至 服务器
+        editor.customConfig.uploadImgServer = '/Ashx/BulletinManage/UpLodeImg.ashx'
+        //editor.customConfig.uploadImgShowBase64 = true
+        editor.create();
+
+        $("#btn").click(function () {
+            //alert("111");
+            alert(editor.txt.html());
+        })
+    }
+    </script>
+</head>
+<body>
+    <div id="Editor">
+       <p>asddsafsdf</p>
+        <h1>dsafsdf</h1>
+    </div>
+    <input type="button" id="btn" value="按钮"/>
+</body>
+</html>

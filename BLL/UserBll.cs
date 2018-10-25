@@ -103,7 +103,7 @@ namespace BLL
         /// <param name="pwd"></param>
         /// <returns></returns>
         public UserInfo Login(string userName ,string pwd) {
-            pwd = Md5.Md5String(pwd);
+            if (pwd.Length<32) pwd = Md5.Md5String(pwd);
             return dal.Login(userName, pwd);
         }
     }

@@ -4,9 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="/js/jquery-1.11.1.js"></script>
     <script src="/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -33,18 +33,18 @@
             <div class="col-sm-2">
                 <ul class="nav nav-pills nav-stacked">
                     <li role="presentation" class="active"><a href="#">首页设置</a></li>
-                    <li role="presentation"><a href="#">用户管理</a></li>
-                    <li role="presentation" class="dropdown">
+                    <li role="presentation"><a  href="/admin/UserList.html" target="content">用户管理</a></li>
+                    <%--<li role="presentation" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户管理 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/admin/UserList.html" target="content">用户列表</a></li>
                             <li><a href="#">添加用户</a></li>
                         </ul>
-                    </li>
+                    </li>--%>
                     <li role="presentation" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公告管理 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">公告列表</a></li>
+                            <li><a href="/admin/BulletinList.html" target="content">公告列表</a></li>
                             <li><a href="/admin/BulletinType.html" target="content">公告类别</a></li>
                         </ul>
                     </li>
@@ -58,14 +58,14 @@
                     </li>
                 </ul>
             </div>
-        </div>
 
             <!----------------------导航栏结束-------------------------------->
             <div class="col-sm-10">
-               <iframe name="content" frameborder="0" scrolling="no" height="800px" width="100%" ></iframe>
-        
+                <iframe name="content" frameborder="0" scrolling="no" height="800px" width="100%"></iframe>
+
 
             </div>
+        </div>
     </div>
 
 </body>

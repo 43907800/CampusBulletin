@@ -67,12 +67,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.html" />
+    <Content Include="admin\BulletinList.html" />
     <Content Include="admin\UserList.html" />
     <Content Include="admin\NavList.html" />
     <Content Include="admin\SensitiveList.html" />
+    <Content Include="css\bootstrap-select.min.css" />
     <Content Include="css\table.css" />
     <Content Include="img\HeadPic\Default.png" />
+    <Content Include="js\bootstrap-select.min.js" />
     <Content Include="js\jquery-2.1.1.js" />
+    <Content Include="js\wangEditor.js" />
     <Content Include="lib\jquery.validate.js" />
     <Content Include="Test\AdminIndexDemo.html" />
     <Content Include="Test\AdminLoginDemo.html" />
@@ -114,6 +118,11 @@
     <Content Include="Ashx\UserManage\UserAdd.ashx" />
     <Content Include="Ashx\UserManage\UserDel.ashx" />
     <Content Include="Ashx\UserManage\UserEdit.ashx" />
+    <Content Include="Ashx\BulletinManage\UpLodeImg.ashx" />
+    <Content Include="Ashx\BulletinManage\BulletinAdd.ashx" />
+    <Content Include="Ashx\BulletinManage\BulletinPageList.ashx" />
+    <Content Include="Ashx\BulletinManage\BulletinDel.ashx" />
+    <Content Include="Ashx\BulletinManage\BulletinEdit.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -124,6 +133,7 @@
   <ItemGroup>
     <Content Include="admin\BulletinType.html" />
     <Content Include="Test\ModalTest.html" />
+    <Content Include="Test\wangEditor.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +146,21 @@
     </Compile>
     <Compile Include="Ashx\adminLogin.ashx.cs">
       <DependentUpon>adminLogin.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\BulletinManage\BulletinAdd.ashx.cs">
+      <DependentUpon>BulletinAdd.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\BulletinManage\BulletinDel.ashx.cs">
+      <DependentUpon>BulletinDel.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\BulletinManage\BulletinEdit.ashx.cs">
+      <DependentUpon>BulletinEdit.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\BulletinManage\BulletinPageList.ashx.cs">
+      <DependentUpon>BulletinPageList.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\BulletinManage\UpLodeImg.ashx.cs">
+      <DependentUpon>UpLodeImg.ashx</DependentUpon>
     </Compile>
     <Compile Include="Ashx\BulletinTypeManage\BulletinTypeAdd.ashx.cs">
       <DependentUpon>BulletinTypeAdd.ashx</DependentUpon>
@@ -201,7 +226,9 @@
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UpLoadImage\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

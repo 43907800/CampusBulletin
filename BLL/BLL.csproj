@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminInfoBll.cs" />
+    <Compile Include="BulletinBll.cs" />
     <Compile Include="BulletinTypeBll.cs" />
     <Compile Include="NavInfoBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

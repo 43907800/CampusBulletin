@@ -10,7 +10,7 @@ using Common;
 
 namespace DAL
 {
-  public  class SensitiveDal
+    public class SensitiveDal
     {
         /// <summary>
         /// 添加一条记录
@@ -36,7 +36,7 @@ namespace DAL
         public int Delete(int id)
         {
             string sql = "delete [dbo].[T_Sensitive] where  id=@id ";
-            SqlParameter pm = new SqlParameter("@id", SqlDbType.Int) { Value=id};
+            SqlParameter pm = new SqlParameter("@id", SqlDbType.Int) { Value = id };
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, pm);
         }
 
@@ -50,7 +50,7 @@ namespace DAL
             string sql = "select count(1) from [dbo].[T_Sensitive] where [Sensitive]=@text";
             SqlParameter pm = new SqlParameter("@text", SqlDbType.NVarChar, 32) { Value = SensitiveText };
 
-            return Convert.ToInt32(SqlHelper.ExecuteScalar(sql, CommandType.Text, pm) )> 0;
+            return Convert.ToInt32(SqlHelper.ExecuteScalar(sql, CommandType.Text, pm)) > 0;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace DAL
         /// <param name="start"></param>
         /// <param name="end"></param>
         /// <returns></returns>
-        public List<Sensitive> GetPageList(int start,int end)
+        public List<Sensitive> GetPageList(int start, int end)
         {
             string sql = "select * from( select *,ROW_NUMBER()over(order by id) as num from [dbo].[T_Sensitive]) as t where t.num >= @start and t.num <= @end";
             SqlParameter[] pms = {
@@ -80,7 +80,41 @@ namespace DAL
             return Convert.ToInt32(SqlHelper.ExecuteScalar(sql, CommandType.Text));
         }
 
+        /// <summary>
+        /// 获取所有禁用词
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetAllBanned()
+        {
+            List<string> list = new List<string>();
+            string sql = "select Sensitive from [dbo].[T_Sensitive] where Banned=1";
+            using (SqlDataReader reader = SqlHelper.ExecuteReader(sql, CommandType.Text))
+            {
+                while (reader.Read())
+                {
+                    list.Add(reader["Sensitive"].ToString());
+                }
+            }
+            return list;
+        }
 
+        /// <summary>
+        /// 获取所有审查词
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetAllMod()
+        {
+            List<string> list = new List<string>();
+            string sql = "select Sensitive from [dbo].[T_Sensitive] where Mod=1";
+            using (SqlDataReader reader = SqlHelper.ExecuteReader(sql, CommandType.Text))
+            {
+                while (reader.Read())
+                {
+                    list.Add(reader["Sensitive"].ToString());
+                }
+            }
+            return list;
+        }
         /// <summary>
         /// table 转 list 集合
         /// </summary>
@@ -91,7 +125,7 @@ namespace DAL
             List<Sensitive> list = new List<Sensitive>();
             foreach (DataRow dr in tb.Rows)
             {
-              list.Add(  DataRowToModel(dr));
+                list.Add(DataRowToModel(dr));
             }
             return list;
         }

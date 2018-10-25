@@ -11,8 +11,8 @@
     <script src="/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+    <script src="/js/bootstrap-select.min.js"></script>
 
     <style type="text/css">
         #divadd {
@@ -166,6 +166,8 @@
                         //alert(region.split(" "));
                         $("#EditselPro").append("<option selected> " + region.split(" ")[1] + "</option>");
                         $("#EditselCity").append("<option selected> " + region.split(" ")[2] + "</option>");
+                        if (data.isDisable) $("#EditisDisable").prop("checked", true);
+                        else $("#EditisDisable").prop("checked", false);
                         //alert(data.Text);
                         BondOneSelClick(); //为下拉框绑定一次点击事件 加载 数据
 
@@ -198,6 +200,7 @@
                         } else {
                             alert(data);
                         }
+
                     }
                 });
 
@@ -281,44 +284,44 @@
         <form class="form-horizontal" id="frm1">
             <div class="form-group">
                 <label class="col-sm-2 control-label">用户名</label>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <input type="text" class="form-control" name="UserName" id="UserName" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">密码</label>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <input type="text" class="form-control" name="Password" id="Password" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">确认密码</label>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <input type="text" class="form-control" name="Password1" id="Password1" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">邮箱</label>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <input type="text" class="form-control" name="Email" id="Email" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">昵称</label>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <input type="text" class="form-control" name="Name" id="Name">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">性别</label>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <input type="text" class="form-control" name="Sex" id="Sex">
                 </div>
             </div>
             <div class="form-group">
                 <input type="hidden" name="Region"  id="Region"/>
                 <label class="col-sm-2 control-label">地区</label>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="col-sm-6">
                         <select class="selectpicker1 form-control"  id="selPro">
                           
@@ -399,17 +402,20 @@
                             <label class="col-sm-4 control-label">地区</label>
                             <div class="col-sm-6">
                                 <div class="col-sm-6">
-                                    <select class="selectpicker1 form-control EditSel" id="EditselPro">
-
-                                        
-                                    </select>
+                                    <select class="selectpicker1 form-control EditSel" id="EditselPro"></select>
                                 </div>
                                 <div class="col-sm-6">
                                     <select class="selectpicker1 form-control EditSel" data-live-search="true" id="EditselCity"></select>
                                 </div>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">禁用</label>
+                            <div class="col-sm-1">
+                                <input type="checkbox" class="form-control checkbox-inline " name="EditisDisable" id="EditisDisable" >
+                            </div>
+                                
+                        </div>
 
                         <div class="form-group">
                             <div class="col-sm-offset-4 col-sm-6">
