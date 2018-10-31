@@ -36,7 +36,7 @@ namespace Web.Ashx.BulletinManage
                 {
                     string fileName = Path.GetFileName(file.FileName);
                     string fileExt = Path.GetExtension(fileName);
-                    if (fileExt == ".jpg")
+                    if (fileExt == ".jpg"|| fileExt == ".png" || fileExt == ".gif")
                     {
                         string dir = "/UpLoadImage/" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "/";
                         if (!Directory.Exists(context.Request.MapPath(dir)))

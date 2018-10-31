@@ -92,7 +92,7 @@
                 $("#EditRegion").val(region);
             })
         }
-        //加载下拉列表数据
+        //加载 地区下拉列表数据
         function LoadSel(select,pid) {
             $.getJSON("/Ashx/RegionManage/FindRegion.ashx", { "Pid": pid }, function (data) {
                 select.html("");

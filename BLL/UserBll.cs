@@ -38,6 +38,17 @@ namespace BLL
         }
 
         /// <summary>
+        /// 更新 用户头像地址
+        /// </summary>
+        /// <param name="picAddr"></param>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public bool UpdateHeadPic(string picAddr, string userName)
+        {
+           return dal.UpdateHeadPic(picAddr, userName)>0;
+        }
+
+        /// <summary>
         /// 根据id 删除一条数据
         /// </summary>
         /// <param name="id"></param>

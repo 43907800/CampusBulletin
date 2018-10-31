@@ -65,6 +65,14 @@ namespace BLL
             return dal.GetNavPageList(start, end);
         }
         /// <summary>
+        /// 获取所有导航信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Setting> GetAllNavList()
+        {
+            return dal.GetAllNavList();
+        }
+        /// <summary>
         /// 获取导航信息总条数
         /// </summary>
         /// <returns></returns>

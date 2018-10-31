@@ -43,6 +43,7 @@
     <Compile Include="AdminInfoBll.cs" />
     <Compile Include="BulletinBll.cs" />
     <Compile Include="BulletinTypeBll.cs" />
+    <Compile Include="DiscussBll.cs" />
     <Compile Include="NavInfoBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegionBll.cs" />

@@ -75,6 +75,26 @@ namespace DAL
                 };
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, pms);
         }
+
+        /// <summary>
+        /// 根据类型 获取 指定范围数据   
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="typeId"></param>
+        /// <returns></returns>
+        public List<Bulletin> GetPageListByTypeId(int start, int end, int typeId)
+        {
+            string sql = "select * from( select *,ROW_NUMBER()over(order by ReleaseTime Desc) as num from [dbo].[T_Bulletin] where TypeId=@typeId) as t where t.num >= @start and t.num <= @end";
+            SqlParameter[] pms = {
+                new SqlParameter("@start",SqlDbType.Int) { Value=start},
+                new SqlParameter("@end",SqlDbType.Int) { Value=end},
+                new SqlParameter("@typeId",SqlDbType.Int) { Value=typeId}
+            };
+            DataTable tb = SqlHelper.ExecuteDataTable(sql, CommandType.Text, pms);
+            return Table2List(tb);
+        }
+
         /// <summary>
         /// 根据id 删除一条数据
         /// </summary>
@@ -95,7 +115,7 @@ namespace DAL
         /// <returns></returns>
         public List<Bulletin> GetPageList(int start, int end)
         {
-            string sql = "select * from( select *,ROW_NUMBER()over(order by Id) as num from [dbo].[T_Bulletin]) as t where t.num >= @start and t.num <= @end";
+            string sql = "select * from( select *,ROW_NUMBER()over(order by ReleaseTime Desc) as num from [dbo].[T_Bulletin]) as t where t.num >= @start and t.num <= @end ";
             SqlParameter[] pms = {
                 new SqlParameter("@start",SqlDbType.Int) { Value=start},
                 new SqlParameter("@end",SqlDbType.Int) { Value=end},
@@ -112,6 +132,17 @@ namespace DAL
         {
             string sql = "select count(1) from [dbo].[T_Bulletin] ";
             return Convert.ToInt32(SqlHelper.ExecuteScalar(sql, CommandType.Text));
+        }
+
+        /// <summary>
+        /// 获取 分类后 信息总条数
+        /// </summary>
+        /// <returns></returns>
+        public int GetCount(int typeId)
+        {
+            string sql = "select count(1) from [dbo].[T_Bulletin]  where TypeId=@typeId";
+            SqlParameter pm = new SqlParameter("@typeId", SqlDbType.Int) { Value = typeId };
+            return Convert.ToInt32(SqlHelper.ExecuteScalar(sql, CommandType.Text, pm));
         }
 
 

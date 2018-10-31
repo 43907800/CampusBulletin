@@ -22,7 +22,7 @@ namespace Web.Ashx.BulletinManage
             string title = context.Request["Title"];
             string content = context.Request["content"];
             string  userName= context.Request["UserName"];
-            model.State = "审核通过";
+            
             model.TypeId = int.Parse(context.Request["TypeId"] ?? "0");
             model.UserName = userName;
             model.Content = content;
@@ -35,21 +35,22 @@ namespace Web.Ashx.BulletinManage
             }
 
             if (senstitiveBll.CheckBanned(content) || senstitiveBll.CheckBanned(title))
-            {
+            {//检查 内容中是否存在 禁用 敏感词
                 context.Response.Write("No:内容或标题包含禁用词!!!");
                 return;
             }
             else if (senstitiveBll.CheckMod(content) || senstitiveBll.CheckMod(title))
-            {
+            {//检查 内容中是否存在 审查 敏感词
                 model.State = "待审核";
-                if (bll.Add(model))
+                if (bll.Add(model))//调用 业务逻辑层 方法将数据保存到数据库
                 {
                     context.Response.Write("Ok:内容或标题包含审核词,请等待审核!!!");
                 }
             }
             else
             {
-                if (bll.Add(model))
+                model.State = "审核通过";
+                if (bll.Add(model))//调用 业务逻辑层 方法将数据保存到数据库
                 {
                     context.Response.Write("Ok:成功");
                 }

@@ -45,7 +45,6 @@
     <Compile Include="CacheHelper.cs" />
     <Compile Include="Md5.cs" />
     <Compile Include="PageNav.cs" />
-    <Compile Include="RegexHelper.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

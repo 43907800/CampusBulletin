@@ -74,6 +74,16 @@ namespace DAL
         }
 
         /// <summary>
+        /// 获取所有导航信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Setting> GetAllNavList() {
+            string sql = "select Id, Name, value, Remark from [dbo].[T_Setting] where Name='NavInfo'";
+            DataTable tb = SqlHelper.ExecuteDataTable(sql, CommandType.Text);
+            return Table2List(tb);
+        }
+
+        /// <summary>
         /// 获取导航信息总条数
         /// </summary>
         /// <returns></returns>
@@ -82,6 +92,7 @@ namespace DAL
             string sql = "select count(1) from [dbo].[T_Setting] where [Name]='NavInfo'";
             return Convert.ToInt32(SqlHelper.ExecuteScalar(sql, CommandType.Text));
         }
+        
 
 
         /// <summary>

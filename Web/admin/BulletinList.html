@@ -47,8 +47,6 @@
             //editor.customConfig.uploadImgShowBase64 = true
             editor.create();
             $('#div1').attr('style', 'height:auto;');
-
-            
         }
         //加载 编辑信息的 富文本编辑器
         function loadeditEditor() {
@@ -139,12 +137,12 @@
                         $("#editId").val(data.Id);
                         $("#EditIdx").val(data.Id);
                         $("#editselState").val(data.State);
-                        $("#editselPro").val(data.TypeId);
                         $("#editUserName").val(data.UserName);
                         $("#editTitle").val(data.Title);
                         var str = data.Content;
                         str = str.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
                         editEditor.txt.html(str);
+                        $("#editselPro").val(data.TypeId);
 
                         //alert(editEditor);
                     }
@@ -190,6 +188,7 @@
                             alert("更新失败!");
                         }
                         InitTable();
+                        $('#EditModal').modal('hide');
                     }
                 });
 
@@ -228,12 +227,15 @@
 
         //加载公告类型下拉框
         function loadTypeSel(selProidStr) {
+            $.ajaxSettings.async = false;
             $.getJSON("/Ashx/BulletinTypeManage/TypePageList.ashx", "", function (data) {
                 $(selProidStr).html("");
                 for (var i in data.List) {
                     $(selProidStr).append("<option value='" + data.List[i].Id + "'>" + data.List[i].TypeName + "</option>");
                 }
+
             })
+            $.ajaxSettings.async = true;
         }
 
         //给两个按钮绑定点击事件来切换 添加和列表

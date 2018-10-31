@@ -21,6 +21,7 @@ namespace BLL
         /// <returns></returns>
         public int Add(Sensitive model)
         {
+
             int count = 0;
             //判断数据是否存在 再添加
             if (!dal.Exists(model.SensitiveText)) count = dal.Insert(model);
@@ -36,20 +37,24 @@ namespace BLL
         {
             object obj = CacheHelper.Get("banned");
             List<string> list = null;
-            if (obj==null)
+            if (obj == null)
             {
                 list = dal.GetAllBanned();
                 CacheHelper.Set("banned", list);
             }
             else
             {
-                list= obj as List<string>;
+                list = obj as List<string>;
             }
             string regex = string.Join("|", list.ToArray());
-            return Regex.IsMatch(str,regex);
+            return Regex.IsMatch(str, regex);
         }
 
-        
+        /// <summary>
+        /// 检查 审核词
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public bool CheckMod(string str)
         {
             object obj = CacheHelper.Get("mod");
@@ -74,7 +79,8 @@ namespace BLL
         /// <returns></returns>
         public bool Remove(int id)
         {
-            return dal.Delete(id)>0;
+            CacheHelper.Reomve("banned");
+            return dal.Delete(id) > 0;
         }
 
         /// <summary>
@@ -84,6 +90,7 @@ namespace BLL
         /// <returns></returns>
         public int AddList(List<Sensitive> list)
         {
+            CacheHelper.Reomve("banned");
             int count = 0;
             foreach (var model in list)
             {

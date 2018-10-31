@@ -1,0 +1,198 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="IndexParent.master.cs" Inherits="Web.IndexPage.IndexParent" %>
+
+<%@ Import Namespace="Model" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>首页</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/main.css" rel="stylesheet" />
+    <script src="/js/jquery-2.1.1.js"></script>
+    <script src="/js/Vue2.5.17.js"></script>
+    <script src="/js/vue-resource.js"></script>
+    <script src="../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="../js/wangEditor.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="index.aspx" class="navbar-brand">校园 ⋅ 公告墙
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <%foreach (NavInfo nav in navList)
+                    {
+                        Response.Write("<li><a href='" + nav.Address + "' class='typeNav'>" + nav.Text + "</a></li>");
+                    } %>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!-- <li><a href="login.html">登录</a></li>
+                <li><a href="signup.html">注册</a></li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="col-sm-8">
+            <div class="post-list">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+
+
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <input type="search" class="form-control" placeholder="搜索">
+            </div>
+            <%if (userInfo == null)
+                {%>
+            <div class="side-bar-well clearfix">
+                <div class="row text-center">
+                    <h1>请登录!!!</h1>
+                </div>
+                <div class="row text-center">
+                    <div class="btn-group  btn-group-lg" role="group" aria-label="...">
+                        <button type="button" class="btn btn-primary" id="ShowLoginModel">登录</button>
+                        <button type="button" class="btn btn-success" id="ShowRegisterModal">注册</button>
+                    </div>
+                </div>
+            </div>
+            <%} %>
+            <%else
+                { %>
+            <div class="side-bar-well clearfix">
+                <div class="row text-center">
+                    <img class="avatar-headPic" id="HeadPicImg" src="<%= userInfo.HeadPicAddress%>" />
+                    <br />
+                    <a href="#" id="editHeadPic" onclick="showEditHeadPicModal()">修改头像</a>
+                </div>
+
+                <div class="row text-center">
+                    <h4>欢迎:<%= userInfo.Name%></h4>
+                    <input type="hidden" name="userName" id="userName" value="<%=userInfo.UserName %>"/>
+                </div>
+                <div class="row text-center">
+                    <a href="#" class="btn btn-warning" id="ShowPostModel">发帖</a>
+                    <a href="#" class="btn btn-info" id="ShowInfoEditModal">个人信息</a>
+                    <a href="/Ashx/UserManage/UserLogout.ashx" class="btn btn-danger">退出</a>
+                </div>
+            </div>
+
+            <%} %>
+
+
+            <!-- <div class="side-bar-well">
+                
+                
+                
+              </div> -->
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2018 校园公告墙 中国互联网举报中心京ICP证1401号京ICP备125439号-3京公网安备
+    </div>
+
+    <!------------------------头像上传框-------------->
+    <div class="modal fade " tabindex="-1" role="dialog" data-backdrop="false" id="EditHeadPicModal">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">头像修改</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="frmEditHeadPic" >
+                        <input type="file" name="imgFile" id="imgFile" />
+                        <input type="button" class="btn btn-block" value="上传" id="upLodeImg"/>
+
+                        <div class="row text-center">
+                            <input type="hidden" name="HeadPicAddr" id="HeadPicAddr"/>
+                            
+                            <img class="avatar-headPic" id="PicTemp" src="" />
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="saveHeadPicAddr">保存</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!---------------------------头像上传框结束-------------->
+
+
+
+    <script type="text/javascript">
+
+        function showEditHeadPicModal() {
+            //alert("123");
+            $('#EditHeadPicModal').modal('show');//弹出模态框
+            return false;
+        }
+
+        //上传按钮 点击 事件
+        $("#upLodeImg").click(function () {
+            var formData = new FormData();
+            formData.append("imgPic", document.getElementById("imgFile").files[0]);//获取图片数据
+            $.ajax({
+                url: "/Ashx/BulletinManage/UpLodeImg.ashx",
+                type: "post",
+                data: formData,//请求数据
+                dataType:"json",
+                contentType: false,//必须false才会自动加上正确的Content-Type
+                processData: false,//必须false才会避开jQuery对 formdata 的默认处理  * XMLHttpRequest会对 formdata 进行正确的处理
+                success: function (data) {
+                    console.log(data);
+                    if (data.errno==0) {
+                        $("#PicTemp").attr("src", data.data[0]);
+                        $("#HeadPicAddr").val(data.data[0]);
+                    }
+                }
+            });
+        });
+        
+        //上传图片 保存按钮点击事件 
+        $("#saveHeadPicAddr").click(function () {
+            var picAddr = $("#HeadPicAddr").val();
+            var userName = $("#userName").val();
+            if (picAddr == "" || picAddr==null) {
+                alert("请上传图片!!");
+                return;
+            }
+            if (userName == "" || userName==null) {
+                alert("未登录!或其他异常!!");
+                return;
+            }
+            var data = { "HeadPicAddr": picAddr, "userName": userName };
+            $.ajax({
+                url: "/Ashx/UserManage/UserUpdateHeadPic.ashx",
+                type: "post",
+                data:data,
+                success: function (data) {
+                    if (data=="Ok") {
+                        //$("#HeadPicImg").attr("src", picAddr);
+                        alert("保存成功,重新登录后生效!!");
+
+                    } else  {
+                        alert("保存失败,未知异常!!");
+                    }
+
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

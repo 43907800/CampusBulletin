@@ -8,33 +8,72 @@
     <script src="/js/jquery-1.11.1.js"></script>
     <script src="/js/wangEditor.js"></script>
     <script type="text/javascript">
-    $(function(){
-        loadEditor();
-        
+        $(function(){
+            loadEditor();
+            var s = '是豆腐干豆腐干是的 <img src="/UpLoadImage/2018-10-29/e4fee4cd-7fbb-4b1f-b904-2d9c6ad65eab.jpg" style="max-width:100%;">代表大会比赛的后半段好吧<img src="1213b.jpg" style="max-width:100%;"><img src="/gdfgdfgb.jpg" style="max-width:100%;">';
+            getImgSrc(s);
+        })
 
-    })
+
+        function getImgSrc(str) {
+            //var imgSrc = "";
+            //var b = /<img.*src=(.*?)[^>]*?>/i;
+            //var s = str.match(b)
+            ////alert(s);
+            //for (var i = 0; i < s.length; i++) {
+            //    alert(s[i]);
+            //    alert(RegExp.$1)
+            //}
+            //--------------------------------
+            //var reg = new RegExp("<img.*src=\"\.*?\>");
+            //var re = /.*src="([^"]*)?"/ig;  //只查找 /ckfinder/userfiles/images/qi_cym.jpg 这段路径
+            //var mre2 = str.match(reg)
+            //var mre = re.exec(mre2[0])
+            //console.log(mre2)
+            //console.log(mre)
+            //-------------------------------
+            //匹配图片（g表示匹配所有结果i表示区分大小写）
+            var imgReg = /<img.*?(?:>|\/>)/gi;
+            //匹配src属性
+            var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+            var arr = str.match(imgReg);
+            
+            alert('所有已成功匹配图片的数组：'+arr);
+            for (var i = 0; i < arr.length; i++) {
+                var src = arr[i].match(srcReg);
+                //获取图片地址
+                if (src[1]) {
+                    alert('已匹配的图片地址' + (i + 1) + '：' + src[1]);
+                }
+                //当然你也可以替换src属性
+                if (src[0]) {
+                    var t = src[0].replace(/src/i, "href");
+                    //alert(t);
+                }
+            }
+        }
 
         //加载富文本编辑器
-    function loadEditor() {
-        var E = window.wangEditor
-        var editor = new E('#Editor');
-        //设置图片上传至 服务器
-        editor.customConfig.uploadImgServer = '/Ashx/BulletinManage/UpLodeImg.ashx'
-        //editor.customConfig.uploadImgShowBase64 = true
-        editor.create();
+        function loadEditor() {
+            var E = window.wangEditor
+            var editor = new E('#Editor');
+            //设置图片上传至 服务器
+            editor.customConfig.uploadImgServer = '/Ashx/BulletinManage/UpLodeImg.ashx'
+            //editor.customConfig.uploadImgShowBase64 = true
+            editor.create();
 
-        $("#btn").click(function () {
-            //alert("111");
-            alert(editor.txt.html());
-        })
-    }
+            $("#btn").click(function () {
+                //alert("111");
+                alert(editor.txt.html());
+            })
+        }
     </script>
 </head>
 <body>
     <div id="Editor">
-       <p>asddsafsdf</p>
+        <p>asddsafsdf</p>
         <h1>dsafsdf</h1>
     </div>
-    <input type="button" id="btn" value="按钮"/>
+    <input type="button" id="btn" value="按钮" />
 </body>
 </html>

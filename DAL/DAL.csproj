@@ -43,6 +43,7 @@
     <Compile Include="AdminInfoDal.cs" />
     <Compile Include="BulletinDal.cs" />
     <Compile Include="BulletinTypeDal.cs" />
+    <Compile Include="DiscussDal.cs" />
     <Compile Include="RegionDal.cs" />
     <Compile Include="SettingDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -29,7 +29,7 @@ namespace BLL
         /// <param name="id"></param>
         /// <returns></returns>
         public Bulletin GetModelById(int id) {
-         
+            GetModelById(id, 0);
             return dal.GetModelById(id);
             
         }
@@ -41,6 +41,7 @@ namespace BLL
         /// <returns></returns>
         public bool Update(Bulletin model)
         {
+            
             return dal.Update(model)>0;
         }
         /// <summary>
@@ -75,6 +76,15 @@ namespace BLL
         }
 
         /// <summary>
+        /// 获取 分类后 数据 总条数
+        /// </summary>
+        /// <returns></returns>
+        public int GetCount(int typeId)
+        {
+            return dal.GetCount(typeId);
+        }
+
+        /// <summary>
         /// 获取指定范围数据
         /// </summary>
         /// <param name="pageIndex"></param>
@@ -92,5 +102,22 @@ namespace BLL
             return list;
         }
 
+        /// <summary>
+        /// 根据类型 获取 指定范围数据   
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public List<Bulletin> GetPageListByTypeId(int pageIndex, int pageSize,int typeId)
+        {
+            int start = (pageIndex - 1) * pageSize + 1;
+            int end = pageIndex * pageSize;
+            List<Bulletin> list = dal.GetPageListByTypeId(start, end, typeId);
+            //foreach (var i in list)
+            //{
+            //    i.Type = typeBll.GetModelById(i.TypeId);
+            //}
+            return list;
+        }
     }
 }

@@ -43,7 +43,7 @@ namespace DAL
         /// <returns></returns>
         public int UpdateByUserName(UserInfo model)
         {
-            string sql = "update [dbo].[T_UserInfo] set  Password=@pwd, Name =@name,Sex=@sex, Mail=@mail, Region=@region, Introduce=@introduce, HeadPicAddress=@headPicAddr, isDisable=@isDisable where UserName=@userName";
+            string sql = "update [dbo].[T_UserInfo] set  Password=@pwd, Name =@name,Sex=@sex, Mail=@mail, Region=@region, Introduce=@introduce,  isDisable=@isDisable where UserName=@userName";
             SqlParameter[] pms = {
                 new SqlParameter("@userName",SqlDbType.VarChar,16) {Value=model.UserName },
                 new SqlParameter("@pwd",SqlDbType.VarChar,32) {Value=model.Password },
@@ -52,12 +52,23 @@ namespace DAL
                 new SqlParameter("@mail",SqlDbType.VarChar,32) {Value=model.Mail },
                 new SqlParameter("@region",SqlDbType.NVarChar,32) {Value=model.Region==null?DBNull.Value:(object)model.Region },
                  new SqlParameter("@introduce",SqlDbType.NVarChar,64) {Value=model.Introduce==null?DBNull.Value:(object)model.Introduce },
-                 new SqlParameter("@headPicAddr",SqlDbType.VarChar,64) {Value=model.HeadPicAddress==null?DBNull.Value:(object)model.HeadPicAddress },
                  new SqlParameter("@isDisable",SqlDbType.Bit) {Value=model.isDisable }
             };
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, pms);
         }
 
+        /// <summary>
+        /// 更新 用户头像地址
+        /// </summary>
+        /// <param name="picAddr"></param>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public int UpdateHeadPic(string picAddr,string userName) {
+            string sql = "update [dbo].[T_UserInfo] set HeadPicAddress=@HeadPicAddress  where UserName=@userName";
+            SqlParameter[] pms = { new SqlParameter("@userName", SqlDbType.VarChar, 16) { Value = userName },
+                new SqlParameter("@HeadPicAddress", SqlDbType.NVarChar, 64) { Value = picAddr}, };
+            return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, pms);
+        }
 
         /// <summary>
         /// 获取指定范围 的数据
@@ -148,7 +159,7 @@ namespace DAL
             string sql = " select * from  [dbo].[T_UserInfo] where UserName=@userName and Password =@pwd";
             SqlParameter[] pms = {
                 new SqlParameter("@userName",SqlDbType.VarChar,16) {Value=userName },
-                new SqlParameter("@userName",SqlDbType.VarChar,32) {Value=pwd }
+                new SqlParameter("@pwd",SqlDbType.VarChar,32) {Value=pwd }
             };
             List<UserInfo> list = Table2List(SqlHelper.ExecuteDataTable(sql, CommandType.Text, pms));
             if (list.Count > 0) return list[0];
@@ -219,7 +230,7 @@ namespace DAL
                 {
                     model.Introduce = row["Introduce"].ToString();
                 }
-                if (row["HeadPicAddress"] != null)
+                if (!string.IsNullOrEmpty(row["HeadPicAddress"] .ToString()))
                 {
                     model.HeadPicAddress = row["HeadPicAddress"].ToString();
                 }

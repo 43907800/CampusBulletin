@@ -68,14 +68,19 @@
   <ItemGroup>
     <Content Include="Admin.html" />
     <Content Include="admin\BulletinList.html" />
+    <Content Include="admin\adminIndex.html" />
     <Content Include="admin\UserList.html" />
     <Content Include="admin\NavList.html" />
     <Content Include="admin\SensitiveList.html" />
     <Content Include="css\bootstrap-select.min.css" />
     <Content Include="css\table.css" />
+    <Content Include="img\default.png" />
     <Content Include="img\HeadPic\Default.png" />
+    <Content Include="index.aspx" />
     <Content Include="js\bootstrap-select.min.js" />
     <Content Include="js\jquery-2.1.1.js" />
+    <Content Include="js\vue-resource.js" />
+    <Content Include="js\Vue2.5.17.js" />
     <Content Include="js\wangEditor.js" />
     <Content Include="lib\jquery.validate.js" />
     <Content Include="Test\AdminIndexDemo.html" />
@@ -123,6 +128,13 @@
     <Content Include="Ashx\BulletinManage\BulletinPageList.ashx" />
     <Content Include="Ashx\BulletinManage\BulletinDel.ashx" />
     <Content Include="Ashx\BulletinManage\BulletinEdit.ashx" />
+    <Content Include="Test\indexPage.Master" />
+    <Content Include="IndexPage\IndexParent.Master" />
+    <Content Include="Ashx\UserManage\UserLogin.ashx" />
+    <Content Include="Ashx\UserManage\UserLogout.ashx" />
+    <Content Include="Ashx\UserManage\UserUpdateHeadPic.ashx" />
+    <Content Include="Ashx\DiscussManege\DiscussAdd.ashx" />
+    <Content Include="Ashx\DiscussManege\DiscussList.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -174,6 +186,12 @@
     <Compile Include="Ashx\BulletinTypeManage\TypePageList.ashx.cs">
       <DependentUpon>TypePageList.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Ashx\DiscussManege\DiscussAdd.ashx.cs">
+      <DependentUpon>DiscussAdd.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\DiscussManege\DiscussList.ashx.cs">
+      <DependentUpon>DiscussList.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Ashx\NavManage\NavAdd.ashx.cs">
       <DependentUpon>NavAdd.ashx</DependentUpon>
     </Compile>
@@ -207,10 +225,40 @@
     <Compile Include="Ashx\UserManage\UserEdit.ashx.cs">
       <DependentUpon>UserEdit.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Ashx\UserManage\UserLogin.ashx.cs">
+      <DependentUpon>UserLogin.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Ashx\UserManage\UserLogout.ashx.cs">
+      <DependentUpon>UserLogout.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Ashx\UserManage\UserPageList.ashx.cs">
       <DependentUpon>UserPageList.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Ashx\UserManage\UserUpdateHeadPic.ashx.cs">
+      <DependentUpon>UserUpdateHeadPic.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IndexPage\IndexParent.Master.cs">
+      <DependentUpon>IndexParent.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IndexPage\IndexParent.Master.designer.cs">
+      <DependentUpon>IndexParent.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\indexPage.Master.cs">
+      <DependentUpon>indexPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\indexPage.Master.designer.cs">
+      <DependentUpon>indexPage.Master</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

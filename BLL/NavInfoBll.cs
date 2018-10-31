@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Common;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace BLL
         /// <returns></returns>
         public bool Add(NavInfo nav)
         {
+            CacheHelper.Reomve("navInfo");
             return settingBll.Add(nav.ToSetting());
         }
 
@@ -28,6 +30,7 @@ namespace BLL
         /// <returns></returns>
         public bool Update(NavInfo nav)
         {
+            CacheHelper.Reomve("navInfo");
             return settingBll.Update(nav.ToSetting())>0;
         }
 
@@ -38,6 +41,7 @@ namespace BLL
         /// <returns></returns>
         public bool Remove(int id)
         {
+            CacheHelper.Reomve("navInfo");
             return settingBll.Delete(id)>0;
         }
 
@@ -58,6 +62,40 @@ namespace BLL
             return navList;
         }
 
+        /// <summary>
+        /// 获取所有导航信息
+        /// </summary>
+        /// <returns></returns>
+        public List<NavInfo> GetAllNav()
+        {
+            object obj= CacheHelper.Get("navInfo");
+            List<NavInfo> navList = null;
+            if (obj==null)
+            {
+                navList = GetSettingToNavList();
+                CacheHelper.Set("navInfo", navList);
+            }
+            else
+            {
+                navList = obj as List<NavInfo>;
+            }
+            return navList;
+        }
+
+        /// <summary>
+        /// 配置list 转成 导航 对象
+        /// </summary>
+        /// <returns></returns>
+        private List<NavInfo> GetSettingToNavList()
+        {
+            List<NavInfo> navList = new List<NavInfo>();
+            List<Setting> list = settingBll.GetAllNavList();
+            foreach (var item in list)
+            {
+                navList.Add(item.ToNavInfo());
+            }
+            return navList;
+        }
         /// <summary>
         /// 获取导航信息总条数
         /// </summary>

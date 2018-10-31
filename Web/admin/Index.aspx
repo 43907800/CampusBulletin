@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>后台管理</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="/js/jquery-1.11.1.js"></script>
@@ -32,7 +32,7 @@
             <!---------------------------导航栏----------------------------->
             <div class="col-sm-2">
                 <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation" class="active"><a href="#">首页设置</a></li>
+                    <li role="presentation" class="active"><a href="/admin/adminIndex.html" target="content">&nbsp;&nbsp;首&nbsp;&nbsp;页</a></li>
                     <li role="presentation"><a  href="/admin/UserList.html" target="content">用户管理</a></li>
                     <%--<li role="presentation" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户管理 <span class="caret"></span></a>
@@ -61,9 +61,9 @@
 
             <!----------------------导航栏结束-------------------------------->
             <div class="col-sm-10">
-                <iframe name="content" frameborder="0" scrolling="no" height="800px" width="100%"></iframe>
+                <iframe name="content" frameborder="0" scrolling="no" height="1000px" width="100%"></iframe>
 
-
+                
             </div>
         </div>
     </div>

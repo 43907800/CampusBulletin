@@ -36,13 +36,22 @@ namespace Web.Ashx.UserManage
                     context.Response.Write("密码不一致!");
                     return;
                 }
-                if (passwrod.Length > 32)
+                else if (passwrod.Length==32)
                 {
-                    context.Response.Write("密码过长!!");
+                    
+                }
+                else if ( passwrod.Length < 6 || passwrod.Length > 16)
+                {
+                    context.Response.Write("用户名或密码的长度过短或过长!!!");
                     return;
                 }
                 user.Password = passwrod;
                 user.Mail = context.Request["EditEmail"];
+                if (!user.Mail.Contains("@"))
+                {
+                    context.Response.Write("邮箱格式不正确!!");
+                    return;
+                }
                 user.Name = context.Request["EditName"];
                 user.Sex = context.Request["EditSex"] == "男";
                 user.Region = context.Request["EditRegion"];

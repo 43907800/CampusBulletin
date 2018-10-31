@@ -51,7 +51,7 @@ namespace Web.Ashx.BulletinManage
                 }
                 else if (senstitiveBll.CheckMod(content) || senstitiveBll.CheckMod(title))
                 {
-                    model.State = "待审核";
+                    //model.State = "待审核";
                     if (bll.Update(model))
                     {
                         context.Response.Write("Ok:内容或标题包含审核词,请等待审核!!!");
